@@ -6,8 +6,10 @@ The goal of this project is to identify person of interest (POI) in the Enron fr
 
 ### Outlier removal: 
 There is one outlier which is the “total” amount of the financial information. This data point is removed since it is not real employee data. Another outlier is CEO, Kenneth Lay. Although Kenneth’s financial information is way out of the general population of the rest of employees, this data point is retained during analysis since it is a real data point.  
-Identify NaN:
+
+### Identify NaN:
 The dataset does not have complete information for each person’s features. There are many “NaN” values in the dataset. In the following array, the fraction of “NaN” values for each feature is listed. 
+```
 [('poi', 0.0),
  ('exercised_stock_option_ratio', 0.0),
  ('poi_email', 0.0),
@@ -31,14 +33,19 @@ The dataset does not have complete information for each person’s features. The
  ('restricted_stock_deferred', 0.877),
  ('director_fees', 0.884),
  ('loan_advances', 0.973)]
-Feature engineering:
+ ```
+ 
+### Feature engineering:
 Other than the original features in the dataset, I engineered two additional features, “poi_email” and “exercised_stock_option_ratio”. “poi_email” is the product of the number of emails from a person to POI and the number of emails from POI to this person. This feature will amplify the effect of a person's email communication with POI during identification. 
+
 “exercised_stock_option_ratio” is the ratio of exercised stock value to the total stock value. POIs are likely to exercise their stock options when they sense the corporation is in trouble. Therefore, the fraction of exercised stock options may be high for POIs. 
 Feature selection and model comparison: 
 Feature selection is a critical step in machine learning. We want to select as few features as possible to capture the pattern of data and make reliable predictions. I used SelectKBest algorithm to select features. The number of features (k parameter) was determined iteratively using GridSearchCV. The score function for SelectKBest is f1_classif, which determines the correlation between a feature and class label.
+
 I compared three different classifiers and searched the best features for each of them. I created individual pipeline including scaling (only applies to K Nearest Neighbors), feature selection and classification.  
 For Naïve Bayes classifier, the pipeline is,
-Pipeline(steps=[('filter', SelectKBest(k=7, score_func=<function f_classif at 0x0000000009594AC8>)), ('classifier', GaussianNB())])
+```
+Pipeline(steps=[('filter', SelectKBest(k=7, score_func=<function f_classif at 0x0000000009594AC8>)), ('classifier', GaussianNB())])```
 The selected best 7 features and their weight are, 
 deferred_income 0.217
 exercised_stock_option_ratio 6.234
