@@ -1,9 +1,10 @@
-# DA_nanodegree_project5
+# DA_nanodegree_project5, 2016-5-20
 ## Using machine learning to identify POI in Enron fraud
 
-Data Exploration: 
+### Data Exploration:
 The goal of this project is to identify person of interest (POI) in the Enron fraud using financial and email data. Machine learning is a powerful tool to discover the underlying relationships in a large volume of dataset and make predictions on new data point. In this dataset, there are a total of 146 data points and 21 features which document the financial information and emails statistics of Enron employees. 18 of them have been identified as POI during the investigation. 128 of data points are not POI. This dataset has a small number of data points and is imbalanced between two classes (POI vs non POI). In the Enron fraud, POIs may have received financial benefit. There may be a high rate of communication between POIs. Therefore, this dataset can be useful for us to learn about predicting POI based on employee’s financial and email data. 
-Outlier removal: 
+
+### Outlier removal: 
 There is one outlier which is the “total” amount of the financial information. This data point is removed since it is not real employee data. Another outlier is CEO, Kenneth Lay. Although Kenneth’s financial information is way out of the general population of the rest of employees, this data point is retained during analysis since it is a real data point.  
 Identify NaN:
 The dataset does not have complete information for each person’s features. There are many “NaN” values in the dataset. In the following array, the fraction of “NaN” values for each feature is listed. 
